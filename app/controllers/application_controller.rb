@@ -7,8 +7,8 @@ class ApplicationController < ActionController::API
   def index
     # info = data
     # myFunc(JSON.stringify("Hello" + info.name))
-    myJSON = '{"name":"John", "age":30, "city":"New York"}'
-    render json: myJSON
+    myJSON = '{"name":"Eugene", "age":30, "city":"New York"}'
+    render json: myJSON, :callback => params['callback']
   end
 
 end
