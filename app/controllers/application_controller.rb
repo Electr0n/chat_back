@@ -1,5 +1,14 @@
 class ApplicationController < ActionController::API
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  
+  # REVIEW
+  # protect_from_forgery with: :null_session
+  def index
+    # info = data
+    # myFunc(JSON.stringify("Hello" + info.name))
+    myJSON = '{"name":"John", "age":30, "city":"New York"}'
+    render json: myJSON
+  end
+
 end
