@@ -7,8 +7,16 @@ class ApplicationController < ActionController::API
   def index
     # info = data
     # myFunc(JSON.stringify("Hello" + info.name))
-    myJSON = '{"name":"Eugene", "age":30, "city":"New York"}'
-    render json: myJSON, :callback => params['callback']
+    # binding.pry
+    data = params['data'].split('/?callback=')
+    myJSON = JSON.parse data.first
+    # if myJSON["age"].to_i < 18
+    #   msg = "Hello " + myJSON["name"] + "! You are old enough. Welcome."
+    # else
+    #   msg = "Hello " + myJSON["name"] + "! You are too young."
+    # end
+    myJSON["msg"] = myJSON["age"].to_i < 18 ? ("Hello " + myJSON["name"] + "! You are too young.") : ("Hello " + myJSON["name"] + "! You are old enough. Welcome.")
+    render json: myJSON, callback: data.last
   end
 
 end
